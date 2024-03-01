@@ -6,15 +6,14 @@ const todoSchema = new mongoose.Schema({
         required: true,
     },
     status: {
-        type: String,
+        type: Boolean,
         index: true,
-        lowercase: true,
+        default: false,
     },
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User"
     }
+}, { timestamps: true });
 
-}, { timestamps: true })
-
-export const Todo = mongoose.model("Todo", todoSchema)
+export const Todo = mongoose.model("Todo", todoSchema);
