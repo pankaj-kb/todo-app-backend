@@ -18,4 +18,10 @@ app.get("/", (req, res) => {
     res.send("<h1>Server Running/Live</h1>")
 })
 
+import userRouter from "./routes/user.routes.js"
+import todoRouter from "./routes/todo.routes.js"
+
+app.use('/api/v1/user', userRouter)
+app.use('/api/v1/todo', todoRouter)
+
 export { app }
