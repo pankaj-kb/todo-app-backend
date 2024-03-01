@@ -126,6 +126,22 @@ const getCurrentUser = asyncHandler(async (req, res) => {
         .json(new APIResponse(200, user, "User fetched Successfully."))
 })
 
+const getTodos = asyncHandler(async (req, res) => {
+    const user = await User.findOne({ _id: req.user._id });
+
+    if (!user) {
+        throw new APIError(404, "User not logged in...");
+    }
+
+    const todos = await Todo.find({
+        _id: { $in: user.todos },
+    });
+
+    return res
+        .status(200)
+        .json(new APIResponse(200, todos, "All todos fetched successfully."));
+});
+
 export {
     registerUser,
     loginUser,
