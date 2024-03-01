@@ -41,7 +41,7 @@ const addTodo = asyncHandler(async (req, res) => {
 
 const deleteTodo = asyncHandler(async (req, res) => {
 
-    const { todoId } = req.body;
+    const { todoId } = req.params;
 
     if (!todoId) {
         throw new APIError(404, "Kindly provide todoId");
@@ -68,7 +68,8 @@ const deleteTodo = asyncHandler(async (req, res) => {
 })
 
 const updateTodo = asyncHandler(async (req, res) => {
-    const { todoId, title } = req.body;
+    const { todoId } = req.params;
+    const { title } = req.body;
 
     if (!todoId) {
         throw new APIError(404, "Kindly provide todoId");
@@ -97,7 +98,7 @@ const updateTodo = asyncHandler(async (req, res) => {
 
 const toggleTodoStatus = asyncHandler(async (req, res) => {
 
-    const { todoId } = req.body;
+    const { todoId } = req.params;
 
     if (!todoId) {
         throw new APIError(404, "Kindly provide todoId");
